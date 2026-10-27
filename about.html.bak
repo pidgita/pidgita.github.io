@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="About Kat Bassett, graphic and web designer."><title>About — Kate Bassett</title><link rel="stylesheet" href="styles.css"></head>
+<body><header class="site-header"><a class="wordmark" href="index.html">KATE BASSETT</a><nav aria-label="Main navigation"><a href="index.html">Work</a><a class="active" href="about.html">About</a><a href="contact.html">Contact <span class="arrow">↗</span></a></nav></header>
+<main class="inner-page">
+  <div class="about-columns"><div class="about-mark"></div><div class="about-copy">
+    <p class="lead">I’m Kate Bassett, a designer and developer.</p>
+    <p>My experience spans graphic and web design, from custom labels and print materials to signage, social media graphics and accessible web pages. I enjoy working to a brief, taking feedback on board and refining the details until the design feels right.</p>
+    <p>Alongside design, I bring more than ten years of experience across systems analysis and software development.</p>
+    <p>I’ve worked with Adobe Illustrator and Photoshop, created designs to client specifications, and designed and updated web pages to established visual styles and accessibility standards. I hold a BSc (Hons) in Computer Science from Lancaster University.</p></div></div>
+<section class="capabilities"><p class="eyebrow">WHAT I CAN HELP WITH</p><div><span>01</span><b>Print & editorial</b><span>02</span><b>Labels & packaging</b><span>03</span><b>Posters & promotional design</b><span>04</span><b>Signage & visual communication</b><span>05</span><b>Web & digital design</b><span>06</span><b>Data visualisation</b></div></section></main>
+<footer><span>KATE BASSETT 2026</span></footer></body></html>

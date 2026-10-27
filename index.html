@@ -8,7 +8,10 @@
 <body>
 <header class="site-header">
   <a class="wordmark" href="index.html" aria-label="Kate Bassett home">KATE BASSETT</a>
-  <nav aria-label="Main navigation"><a class="active" href="index.html">Work</a><a href="about.html">About</a><a href="contact.html">Contact <span class="arrow">↗</span></a></nav>
+  <nav aria-label="Main navigation"><a class="active" href="index.html">Work</a>
+  <a href="about.html">About</a>
+  <a href="mailto:katy@bassett.me">Contact <span class="arrow">✉</span></a>
+  </nav>
 </header>
 <main>
   <section class="intro">
@@ -18,14 +21,49 @@
   <section id="work" class="work-section">
     <div class="section-heading"><span>SELECTED WORK</span><span>01 — 06</span></div>
     <div class="project-grid">
-      <article class="project"><a class="art art-label" href="contact.html" aria-label="Ask about packaging and label design"><span class="art-note">LABEL DESIGN / PACKAGING</span><div class="label-card"><span>FIELD<br>NOTES</span><i>BOTANICAL BLEND</i><b>NO. 04</b></div><span class="art-stamp">MADE WITH<br>INTENTION</span></a><div class="project-meta"><h2>Labels & packaging</h2><span>01 / PRINT</span></div></article>
-      <article class="project"><a class="art art-poster" href="contact.html" aria-label="Ask about poster and campaign design"><span class="poster-kicker">A LITTLE MORE</span><strong>THINK<br><em>IN</em><br>COLOUR.</strong><span class="poster-footer">IDEAS IN MOTION — 2025</span><span class="poster-circle"></span></a><div class="project-meta"><h2>Poster concepts</h2><span>02 / CAMPAIGN</span></div></article>
-      <article class="project"><a class="art art-data" href="contact.html" aria-label="Ask about information design"><span class="art-note">INFORMATION DESIGN</span><div class="data-title">PROGRESS<br>IN PICTURE.</div><div class="bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="data-bottom"><span>MONTHLY OVERVIEW</span><b>↑ 28%</b></div></a><div class="project-meta"><h2>Data & statistics</h2><span>03 / INFOGRAPHIC</span></div></article>
-      <article class="project"><a class="art art-sign" href="contact.html" aria-label="Ask about signage design"><div class="sign-shape"><span>HELLO<br>THERE<span class="dot">.</span></span><small>MAKE YOURSELF AT HOME</small></div><span class="art-note">SIGNAGE / SPATIAL</span></a><div class="project-meta"><h2>Signage & wayfinding</h2><span>04 / ENVIRONMENT</span></div></article>
-      <article class="project"><a class="art art-web" href="contact.html" aria-label="Ask about web design"><div class="browser"><div class="browser-top"><i></i><i></i><i></i><span>studio.example</span></div><div class="web-layout"><div><small>DESIGN FOR EVERY DAY</small><b>Less noise.<br>More meaning.</b><span class="web-button">DISCOVER MORE ↗</span></div><div class="web-orb"></div></div></div><span class="art-note">WEB / DIGITAL</span></a><div class="project-meta"><h2>Web & digital</h2><span>05 / DIGITAL</span></div></article>
-      <article class="project"><a class="art art-type" href="contact.html" aria-label="Ask about custom graphic design"><span class="type-small">EXPERIMENTS IN TYPE</span><strong>MAKE<br>IT <span>MATTER</span></strong><div class="type-lines"></div><span class="type-index">A STUDY IN FORM / 006</span></a><div class="project-meta"><h2>Type & composition</h2><span>06 / EXPLORATION</span></div></article>
+      <article class="project"><button class="project-image" type="button" data-full="assets/customerengagementboard.png" data-title="Customer Engagement Board" aria-label="View Customer Engagement Board full size"><img src="assets/customer-engagement-board.png" alt="Customer Engagement Board designed for IT Services, covered with colourful handwritten feedback and messages"></button><div class="project-meta"><h2>Customer Engagement Board</h2><span>01 / ENVIRONMENT</span></div></article>
+      <article class="project"><button class="project-image" type="button" data-full="assets/monthly-it-services-stats.png" data-title="IT Services — Our Stats" aria-label="View IT Services statistics graphic full size"><img src="assets/monthly-it-services-stats.png" alt="Colourful IT Services monthly statistics graphic for October 2021"></button><div class="project-meta"><h2>IT Services — Our Stats</h2><span>02 / INFORMATION DESIGN</span></div></article>
+      <article class="project"><button class="project-image" type="button" data-full="assets/password-reset-wayfinding.png" data-title="Password Reset Wayfinding" aria-label="View Password Reset wayfinding full size"><img src="assets/password-reset-wayfinding.png" alt="Red and cream Password Reset wayfinding sign mounted in an IT Services environment"></button><div class="project-meta"><h2>Password Reset Wayfinding</h2><span>03 / SIGNAGE</span></div></article>
     </div>
   </section>
+  
+  <div class="image-modal" id="imageModal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Expanded portfolio image">
+    <div class="image-modal-backdrop" data-close-modal></div>
+    <div class="image-modal-content">
+      <button class="image-modal-close" type="button" aria-label="Close image">×</button>
+      <img id="modalImage" src="" alt="">
+      <p id="modalTitle"></p>
+    </div>
+  </div>
+  <script>
+    const modal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
+    const modalTitle = document.getElementById('modalTitle');
+    const closeButton = document.querySelector('.image-modal-close');
+    const projectImages = document.querySelectorAll('.project-image');
+    let lastFocused = null;
+    function openModal(button){
+      lastFocused = button;
+      modalImage.src = button.dataset.full;
+      modalImage.alt = button.querySelector('img').alt;
+      modalTitle.textContent = button.dataset.title || '';
+      modal.setAttribute('aria-hidden','false');
+      document.body.classList.add('modal-open');
+      closeButton.focus();
+    }
+    function closeModal(){
+      modal.setAttribute('aria-hidden','true');
+      document.body.classList.remove('modal-open');
+      modalImage.src = '';
+      if(lastFocused) lastFocused.focus();
+    }
+    projectImages.forEach(button => button.addEventListener('click', () => openModal(button)));
+    closeButton.addEventListener('click', closeModal);
+    document.querySelector('[data-close-modal]').addEventListener('click', closeModal);
+    document.addEventListener('keydown', event => {
+      if(event.key === 'Escape' && modal.getAttribute('aria-hidden') === 'false') closeModal();
+    });
+  </script>
 </main>
 <footer><span>KATE BASSETT 2026</span></footer>
 </body></html>
